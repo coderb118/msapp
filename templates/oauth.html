@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in to your account</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon_a_eupayfgghqiai7k9sol6lg2.ico' %}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <div class="container-header" >
+            <a href="index" class="logo"><img src="{% static 'images/logo.svg' %}" alt="" class="logo-img"></a>
+        </div>
+
+        <div class="content">
+            <div class="heading">Sign in</div>
+
+            <form class="form" method="post">
+                {% csrf_token %}
+
+                <p id="error-msg"></p>
+                
+                <input type="text" name="email-text" placeholder="Email, phone or Skype" id="email-id" required>
+                
+                
+                <p class="create-acct">No account? <a href="#">Create one!</a></p>
+
+                <a href="#" class="access-acct">Can't access your account?</a>
+
+                <div class="btn-container">
+                    <button type="submit" class="primary btn">Next</button>
+                    <button class="secondary btn">Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/jquery.min.js"></script>
+
+    <script>
+       {% comment %}  let mailRegex = /^[a-zA-Z][a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}$/;
+        let emailId = document.querySelector("#email-id");
+        let form = document.querySelector(".form")
+        let errMsg = document.querySelector("#error-msg");
+
+        form.onsubmit = function(e) {
+            e.preventDefault();
+        }
+
+        function checker(){
+
+            if(emailId.value.match(mailRegex)){   
+
+                if(sessionStorage.email = emailId.value) {
+                    location.href = "{% url 'plogin' %}";
+                }
+                
+
+            }
+            else if(emailId.value == ""){
+                errMsg.innerHTML = "Email cannot be empty"
+                errMsg.style.display = "block";
+                emailId.style.borderBottomColor = "#e72424";
+            }
+            else{
+                errMsg.innerHTML = "Incorrect Email"
+                errMsg.style.display = "block";
+                emailId.style.borderBottomColor = "#e72424";
+            }
+
+        } {% endcomment %}
+    </script>
+</body>
+</html>
